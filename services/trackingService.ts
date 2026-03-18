@@ -9,7 +9,7 @@ export interface EvaluationMetric {
     moduleTitle?: string;
     relevanceScore: string;
     rougeScore: string;
-    faithfulness: string;
+    hallucination: string;
     coherence: string;
     quizAccuracy: string;
 }
@@ -175,7 +175,7 @@ export const getEvaluationMetrics = (): EvaluationMetric[] => {
             moduleTitle: data.moduleTitle,
             relevanceScore: `${relevanceVal.toFixed(1)}%`,
             rougeScore: (0.76 + (Math.random() * 0.1)).toFixed(2), 
-            faithfulness: `${(100 - hallucinationRate).toFixed(1)}%`,
+            hallucination: `${hallucinationRate.toFixed(1)}%`,
             coherence: `${coherenceVal.toFixed(1)}%`,
             quizAccuracy: `${(avgAccuracy * 0.97).toFixed(1)}%`, 
         };
@@ -194,7 +194,7 @@ export const exportLogsToCSV = (): void => {
         return;
     }
     
-    const headers = ['Username', 'Research Topic', 'Module', 'Relevance Score', 'ROUGE Score', 'Faithfulness', 'Coherence', 'Quiz Accuracy'];
+    const headers = ['Username', 'Research Topic', 'Module', 'Relevance Score', 'ROUGE Score', 'Hallucination', 'Coherence', 'Quiz Accuracy'];
     
     const csvRows = [
         headers.join(','),
@@ -205,7 +205,7 @@ export const exportLogsToCSV = (): void => {
                 metric.moduleTitle || 'N/A',
                 metric.relevanceScore,
                 metric.rougeScore,
-                metric.faithfulness,
+                metric.hallucination,
                 metric.coherence,
                 metric.quizAccuracy
             ].map(value => {

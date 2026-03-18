@@ -42,7 +42,7 @@ const EvaluationPage = () => {
     return {
       relevanceScore: avgAccuracy !== 'N/A' ? `${avgAccuracy}%` : '85.0%',
       rougeScore: (0.78 + (Math.random() * 0.05)).toFixed(2),
-      faithfulness: `${(100 - parseFloat(hallucinationRate)).toFixed(1)}%`,
+      hallucination: `${(parseFloat(hallucinationRate)).toFixed(1)}%`,
       coherence: `${systemStability}%`,
       quizAccuracy: `${(parseFloat(systemStability) * 0.98).toFixed(1)}%`,
       userInteraction: userInteractions,
@@ -89,7 +89,7 @@ const EvaluationPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <StatCard title="Relevance Score" value={stats.relevanceScore} icon={<CheckBadgeIcon />} description={accuracyDescription} />
             <StatCard title="ROUGE Score" value={stats.rougeScore} icon={<ClockIcon />} />
-            <StatCard title="Faithfulness" value={stats.faithfulness} icon={<ExclamationTriangleIcon />} />
+            <StatCard title="Hallucination" value={stats.hallucination} icon={<ExclamationTriangleIcon />} />
             <StatCard title="Coherence" value={stats.coherence} icon={<ShieldCheckIcon />} />
             <StatCard title="Quiz Accuracy" value={stats.quizAccuracy} icon={<ServerStackIcon />} />
         </div>
@@ -116,7 +116,7 @@ const EvaluationPage = () => {
                                 <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Module</th>
                                 <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Relevance Score</th>
                                 <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ROUGE Score</th>
-                                <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Faithfulness</th>
+                                <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hallucination</th>
                                 <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Coherence</th>
                                 <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quiz Accuracy</th>
                             </tr>
@@ -129,7 +129,7 @@ const EvaluationPage = () => {
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{metric.moduleTitle || '-'}</td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{metric.relevanceScore}</td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{metric.rougeScore}</td>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{metric.faithfulness}</td>
+                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{metric.hallucination}</td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{metric.coherence}</td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{metric.quizAccuracy}</td>
                                 </tr>
