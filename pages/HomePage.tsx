@@ -7,7 +7,7 @@ import { useAppContext } from '../context/AppContext';
 
 const HomePage = () => {
     const { applyFilters } = useAppContext();
-    const [activeFilters, setActiveFilters] = useState({ year: 'All', sortBy: 'default' });
+    const [activeFilters, setActiveFilters] = useState({ year: 'All', sortBy: 'default', highCitation: false });
 
     useEffect(() => {
         applyFilters(activeFilters);
@@ -20,10 +20,10 @@ const HomePage = () => {
         }));
     };
 
-    const handleSortChange = () => {
+    const handleHighCitationToggle = () => {
         setActiveFilters(prev => ({
             ...prev,
-            sortBy: prev.sortBy === 'citations' ? 'default' : 'citations',
+            highCitation: !prev.highCitation,
         }));
     };
         
@@ -46,15 +46,17 @@ const HomePage = () => {
             
             <div className="flex justify-center items-center flex-wrap gap-2 mb-8">
                 <span className="text-sm font-semibold text-gray-600 mr-2">Filters:</span>
+                <FilterButton label="2025" value="2025" />
+                <FilterButton label="2024" value="2024" />
                 <FilterButton label="2023" value="2023" />
                 <FilterButton label="2022" value="2022" />
                 <FilterButton label="2021" value="2021" />
                 <button
-                    onClick={handleSortChange}
-                    className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors ${
-                        activeFilters.sortBy === 'citations'
-                        ? 'bg-blue-800 text-white shadow'
-                        : 'bg-blue-600 text-white hover:bg-blue-700'
+                    onClick={handleHighCitationToggle}
+                    className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors border ${
+                        activeFilters.highCitation
+                        ? 'bg-blue-800 text-white shadow border-blue-800'
+                        : 'bg-white text-blue-600 hover:bg-gray-100 border-blue-600'
                     }`}
                 >
                     High Citation

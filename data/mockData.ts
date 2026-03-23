@@ -57,6 +57,22 @@ export const MOCK_PAPERS: Paper[] = [
     year: 2019,
     citations: 10000,
     abstract: 'This paper proposes a new model scaling method that uniformly scales all dimensions of depth/width/resolution using a simple yet highly effective compound coefficient. We demonstrate that this method can lead to better accuracy and efficiency than previous approaches. Our EfficientNet models achieve state-of-the-art accuracy on ImageNet while being up to 10x smaller and faster.'
+  },
+  {
+    id: '8',
+    title: 'Generative AI in 2024: Trends and Breakthroughs',
+    authors: ['Dr. Sarah Miller', 'Kevin Zhang'],
+    year: 2024,
+    citations: 45,
+    abstract: 'This paper explores the rapid evolution of generative AI in 2024, focusing on multi-modal models and efficient fine-tuning techniques. We analyze the impact of these technologies on various industries and discuss the ethical considerations of large-scale AI deployment.'
+  },
+  {
+    id: '9',
+    title: 'Quantum Machine Learning: A 2025 Perspective',
+    authors: ['Prof. David Chen', 'Emily Watson'],
+    year: 2025,
+    citations: 12,
+    abstract: 'As we enter 2025, quantum computing is beginning to show practical advantages for specific machine learning tasks. This paper reviews the current state of quantum machine learning algorithms and provides a roadmap for the next decade of research.'
   }
 ];
 

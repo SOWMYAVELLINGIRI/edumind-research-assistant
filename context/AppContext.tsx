@@ -29,7 +29,7 @@ interface AppContextType {
   setSelectedPaper: React.Dispatch<React.SetStateAction<Paper | null>>;
   isSearching: boolean;
   searchPapers: (topic: string) => Promise<void>;
-  applyFilters: (filters: { year: string; sortBy: string }) => void;
+  applyFilters: (filters: { year: string; sortBy: string; highCitation?: boolean }) => void;
   login: (email: string, password: string) => Promise<void>;
   signup: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
@@ -249,10 +249,14 @@ export const AppProvider: FC<{children: ReactNode}> = ({ children }) => {
     }
   };
 
-  const applyFilters = useCallback((filters: { year: string, sortBy: string }) => {
+  const applyFilters = useCallback((filters: { year: string, sortBy: string, highCitation?: boolean }) => {
     let papersToFilter = [...searchedPapers];
     if (filters.year && filters.year !== 'All') {
         papersToFilter = papersToFilter.filter(p => p.year.toString() === filters.year);
+    }
+    if (filters.highCitation) {
+        // Define high citation as > 100
+        papersToFilter = papersToFilter.filter(p => p.citations >= 100);
     }
     if (filters.sortBy === 'citations') {
         papersToFilter.sort((a, b) => b.citations - a.citations);
